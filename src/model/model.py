@@ -12,6 +12,16 @@ class Recipe:
         return "{} {} {}".format(self.name, self.type, self.ingredients)
 
 
+class RestRecipe(Recipe):
+    def __init__(self, name, type, serving, image_path, ingr_str):
+        super(RestRecipe, self).__init__(name, type, serving, image_path, ingr_str)
+
+    @staticmethod
+    def to_Rest(recipe):
+        return RestRecipe(recipe.name, recipe.type, recipe.serving, recipe.image_path,
+                          ",".join(list(map(lambda x: x.name, recipe.ingredients))))
+
+
 
 class Ingredient:
     def __init__(self, name, type, image, serving=None):
@@ -22,6 +32,7 @@ class Ingredient:
 
     def __repr__(self):
         return "({}, {})".format(self.name, self.type)
+
 
 
 class RecipePuppyResponse:
