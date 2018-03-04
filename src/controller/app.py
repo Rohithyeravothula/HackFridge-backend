@@ -15,7 +15,6 @@ app = Flask(__name__)
 
 @app.route('/recipe/search', methods=['POST'])
 def search():
-    print("like", request.json)
     if not request.json:
         abort(400)
     content = request.json
@@ -25,7 +24,11 @@ def search():
 
 @app.route('/recipe/search/image', methods=['POST'])
 def search_images():
-    return recipeDao.get_recipe_with_image()
+    if not request.json:
+        abort(400)
+    content = request.json
+    img_data = content["image"]
+    return recipeDao.get_recipe_with_image(img_data)
 
 
 @app.route('/recipe/search/ingredients', methods=['POST'])

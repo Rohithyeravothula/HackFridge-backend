@@ -1,7 +1,9 @@
 import requests
 import json
 from src.model.model import RecipePuppyResponse, Recipe, Ingredient
+from src.integrations.imagerecog import ImageRecog
 
+imgrc = ImageRecog()
 
 class RecipeDao:
     def __init__(self):
@@ -45,8 +47,10 @@ class RecipeDao:
         data = req.json()
         return self._format_response(data["results"])
 
-    def get_recipe_with_image(self):
-        pass
+    def get_recipe_with_image(self, img_data):
+        ingr = imgrc.get_ingredients(img_data)
+        return self.get_recipe_with_ingr(ingr)
+
 
     def get_recipe(self, name):
         params = {"q": name}

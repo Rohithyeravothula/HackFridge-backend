@@ -1,13 +1,14 @@
-import requests
-import hmac
-import hashlib
-from urllib.parse import urlencode, quote_plus
-import datetime
-import time
-import re
 import base64
-from binascii import unhexlify, b2a_base64
+import datetime
+import hashlib
+import hmac
+import re
 import xml.etree.ElementTree as ET
+from binascii import unhexlify
+from urllib.parse import urlencode, quote_plus
+
+import requests
+
 from src.model.model import Product
 
 AssociateTag = ""
@@ -54,7 +55,7 @@ class AmazonIntegration:
             return ""
 
     def parse_data(self, xmldata):
-        interested_tags = {"ItemLinks", "MediumImage", "ItemAttributes"}
+        # interested_tags = {"ItemLinks", "MediumImage", "ItemAttributes"}
         # tree = ET.parse("../../resources/sample.xml")
         # f = open("../../resources/sample.xml")
         # data = f.read()

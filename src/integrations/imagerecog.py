@@ -1,7 +1,4 @@
 import requests
-import json
-import _pickle as pickle
-import binascii
 
 subscription_key = "127b284d2078484ca39996a634e718a1"
 print("remove this before commit")
