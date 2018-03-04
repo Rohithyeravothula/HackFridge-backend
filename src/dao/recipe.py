@@ -40,9 +40,7 @@ class RecipeDao:
         if missing_factor == 0:
             params["i"] = ",".join(self._format_ingredients(ingredients))
         elif missing_factor == 1:
-            # ingredients.appennd("new ingredient")
             params["i"] = ",".join(self._format_ingredients(ingredients))
-        # print(params)
         req = requests.get(self.api, params=params)
         data = req.json()
         return self._format_response(data["results"])
@@ -51,10 +49,15 @@ class RecipeDao:
         pass
 
     def get_recipe(self, name):
-        pass
+        params = {"q": name}
+        req = requests.get(self.api, params=params)
+        data = req.json()
+        return self._format_response(data["results"])
+
+
 
 
 if __name__ == "__main__":
     dao = RecipeDao()
-    result = dao.get_recipe_with_ingr(["onion", "garlic"])
-    print(result)
+    recipe = dao.get_recipe("omlet")
+    print(recipe)

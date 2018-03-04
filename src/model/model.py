@@ -1,5 +1,9 @@
 import re
 
+def whitespace_strip(inp):
+    return " ".join(inp.split())
+
+
 class Recipe:
     def __init__(self, name, type, serving, image_path, ingredients=None):
         self.name = name
@@ -50,5 +54,14 @@ class RecipePuppyResponse:
         return RecipePuppyResponse(args[0], args[1], args[2], args[3])
 
 
-def whitespace_strip(inp):
-    return " ".join(inp.split())
+class Product:
+    def __init__(self, name, thumbnail, link, price):
+        self.name = name
+        self.thumbnail = thumbnail
+        self.link = link
+        self.price = price
+
+    def __repr__(self):
+        return "{} {}".format(self.name, self.price)
+
+
