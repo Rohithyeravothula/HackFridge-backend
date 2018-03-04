@@ -27,8 +27,8 @@ def search_images():
     if not request.json:
         abort(400)
     content = request.json
-    img_data = content["image"]
-    return recipeDao.get_recipe_with_image(img_data)
+    img_data = content.get("image")
+    return make_response(jsonify(recipe_list_json(recipeDao.get_recipe_with_image(img_data))))
 
 
 @app.route('/recipe/search/ingredients', methods=['POST'])
@@ -57,4 +57,4 @@ def test_endpoint():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

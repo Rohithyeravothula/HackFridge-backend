@@ -44,11 +44,16 @@ class RecipeDao:
         elif missing_factor == 1:
             params["i"] = ",".join(self._format_ingredients(ingredients))
         req = requests.get(self.api, params=params)
+        print(req.json())
         data = req.json()
-        return self._format_response(data["results"])
+        if data["results"]:
+            return self._format_response(data["results"])
+        print("empty results")
+        return []
 
     def get_recipe_with_image(self, img_data):
         ingr = imgrc.get_ingredients(img_data)
+        # print(ingr)
         return self.get_recipe_with_ingr(ingr)
 
 

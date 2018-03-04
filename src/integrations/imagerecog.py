@@ -1,24 +1,24 @@
 import requests
 
-subscription_key = "127b284d2078484ca39996a634e718a1"
-print("remove this before commit")
 
 class ImageRecog:
     def __init__(self):
-        ""
+        pass
 
     def get_ingredients(self, img_data=None):
-        vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
-        vision_analyze_url = vision_base_url + "analyze"
+        vision_analyze_url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/260143c4-e99f-4993-b517-652d0545b2b5/image"
         img_data = open("../../resources/fridge1.jpeg", "rb").read()
-        headers = {'Ocp-Apim-Subscription-Key': subscription_key,
-                   "Content-Type": "application/octet-stream"}
-        params = {'visualFeatures': 'tags'}
-        req = requests.post(vision_analyze_url, headers=headers, params=params, data=img_data)
+        headers = {"Prediction-Key": "ffad13a8175144cca69da75e70c72ff4", "Content-Type": "application/octet-stream"}
+        req = requests.post(vision_analyze_url, headers=headers, data=img_data)
         content = req.json()
         tags = []
         if content:
-            for tag_dict in content["tags"]:
-                if tag_dict["confidence"] > 0.5:
-                    tags.append(tag_dict["name"])
+            for tag_dict in content["Predictions"]:
+                tags.append((tag_dict["Tag"], tag_dict["Probability"]))
+        tags.sort(key=lambda x: float(x[1]), reverse=True)
+        tags = list(map(lambda x: x[0], tags))
         return tags
+
+
+
+
