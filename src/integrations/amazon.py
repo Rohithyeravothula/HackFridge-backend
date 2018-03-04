@@ -11,9 +11,6 @@ import requests
 
 from src.model.model import Product
 
-AssociateTag = ""
-SubscriptionId = ""
-SECRECT_KEY = ""
 
 
 

@@ -4,6 +4,12 @@ from src.dao.image import ImageDao
 from src.dao.recipe import RecipeDao
 from src.util.utils import recipe_list_json, level1_list_json
 from src.integrations.amazon import AmazonIntegration
+from OpenSSL import SSL
+
+
+context = SSL.Context(SSL.SSLv23_METHOD)
+# context.use_privatekey_file()
+# context.use_certificate_file("../../resources/ssl-cert/hacktech.crt")
 
 imageDao = ImageDao()
 recipeDao = RecipeDao()
@@ -36,7 +42,7 @@ def search_ingredients():
     if not request.json:
         abort(400)
     content = request.json
-    ingredients = content["ingredients"].split(",")
+    ingredients = content["ingredients"]
     recipes = recipeDao.get_recipe_with_ingr(ingredients)
     return make_response(jsonify(recipe_list_json(recipes)))
 
@@ -57,4 +63,5 @@ def test_endpoint():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+
+    app.run(host="0.0.0.0", port=5000, debug=True, ssl_context=context)
