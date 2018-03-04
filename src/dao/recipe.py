@@ -1,7 +1,7 @@
 import requests
 import json
-from src.model.model import RecipePuppyResponse, Recipe, Ingredient
-from src.integrations.imagerecog import ImageRecog
+from model.model import RecipePuppyResponse, Recipe, Ingredient
+from integrations.imagerecog import ImageRecog
 
 imgrc = ImageRecog()
 
@@ -9,7 +9,7 @@ imgrc = ImageRecog()
 class RecipeDao:
     def __init__(self):
         self.api = "http://www.recipepuppy.com/api/"
-        self._format_path = "../../resources/ingredients.json"
+        self._format_path = "../resources/ingredients.json"
         self._ingr_map = {}
         self.read_ingr_map()
 

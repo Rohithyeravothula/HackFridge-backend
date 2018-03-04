@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request, abort
 from flask import make_response
-from src.dao.image import ImageDao
-from src.dao.recipe import RecipeDao
-from src.util.utils import recipe_list_json, level1_list_json
-from src.integrations.amazon import AmazonIntegration
+from dao.image import ImageDao
+from dao.recipe import RecipeDao
+from util.utils import recipe_list_json, level1_list_json
+from integrations.amazon import AmazonIntegration
 from OpenSSL import SSL
 
 
@@ -63,5 +63,4 @@ def test_endpoint():
 
 
 if __name__ == "__main__":
-
     app.run(host="0.0.0.0", port=5000, debug=True)
