@@ -11,9 +11,9 @@ import requests
 
 from model.model import Product
 
-AssociateTag = "7557-20"
-SubscriptionId = "AKIAJPCSEBMUPJ2SNTFA"
-SECRECT_KEY = "ySQU3+3NcZqnJDMpBzYIOACB2+fOyWh9y3fIltQ4"
+AssociateTag = ""
+SubscriptionId = ""
+SECRECT_KEY = ""
 
 
 

@@ -33,6 +33,7 @@ def search():
 
 @app.route('/recipe/search/image', methods=['POST'])
 def search_images():
+    print(request)
     img_data = request.files["image"].read()
     ingr = imgrc.get_ingredients(img_data)
     recipes = recipe_list_json(recipeDao.get_recipe_with_ingr(ingr))
