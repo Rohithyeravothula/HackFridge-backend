@@ -9,7 +9,7 @@ from urllib.parse import urlencode, quote_plus
 
 import requests
 
-from src.model.model import Product
+from model.model import Product
 
 AssociateTag = ""
 SubscriptionId = ""
